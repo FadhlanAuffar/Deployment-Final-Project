@@ -6,7 +6,7 @@ from PIL import Image
 st.image(Image.open('Fig 1.jpeg'))
 
 st.title('Final Project Portugal Bank Telemarketing Campaign for Deposito')
-st.title('Digunakan untuk memprediksi apakah nasabah cederung membuka deposito atau tidak')
+st.text('Digunakan untuk memprediksi apakah nasabah cederung membuka deposito atau tidak')
 
 st.title('A. Feature')
 st.text('Silahkan masukan fitur nasabah  yang akan diprediksi')
