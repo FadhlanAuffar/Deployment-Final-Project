@@ -6,6 +6,7 @@ from PIL import Image
 st.image(Image.open('Fig 1.jpeg'))
 
 st.title('Final Project Portugal Bank Telemarketing Campaign for Deposito')
+st.title('Digunakan untuk memprediksi apakah nasabah cederung membuka deposito atau tidak')
 
 st.title('A. Feature')
 st.text('Silahkan masukan fitur nasabah  yang akan diprediksi')
@@ -15,7 +16,7 @@ if 'model' not in st.session_state:
     st.session_state['model'] = model
 
 
-age = st.number_input('Masukan umur nasabah', value = 17, step=1)
+age = st.number_input('Umur nasabah', value = 17, step=1)
 
 if age > 98 or age < 17:
     st.write('Masukan rentang nilai dari 17-98 tahun, apabila nilai di luar rentang hasil prediksi menjadi tidak akurat')
@@ -25,7 +26,7 @@ else :
     st.write('---')
 
 
-campaign = st.number_input('Masukan jumlah kontak nasabah pada campaign terkini', value = 1, step=1)
+campaign = st.number_input('Jumlah kontak nasabah pada campaign terkini', value = 1, step=1)
 
 if campaign > 56 or campaign < 1:
     st.write('Masukan rentang nilai dari 1-56, apabila nilai di luar rentang hasil prediksi menjadi tidak akurat')
@@ -35,7 +36,7 @@ else :
     st.write('---')
 
 
-previous = st.number_input('Masukan jumlah kontak nasabah pada campaign terdahulu', value = 0, step=1)
+previous = st.number_input('Jumlah kontak nasabah pada campaign terdahulu', value = 0, step=1)
 
 if previous > 7 or previous < 0:
     st.write('Masukan rentang nilai dari 0-7, apabila nilai di luar rentang hasil prediksi menjadi tidak akurat')
@@ -45,7 +46,7 @@ else :
     st.write('---')
 
 
-emp_var_rate = st.number_input('Masukan indeks employment variation rate', value = 0.0)
+emp_var_rate = st.number_input('Indeks employment variation rate', value = 0.0)
 
 if emp_var_rate > 1.4 or emp_var_rate < -3.4:
     st.write('Masukan rentang nilai dari -3.4-1.4, apabila nilai di luar rentang hasil prediksi menjadi tidak akurat')
@@ -56,7 +57,7 @@ else :
 
 
 job = st.selectbox(
-    'Pekerjaan nasabah adalah',
+    'Pekerjaan nasabah',
     ('admin.', 'blue-collar', 'entrepreneur', 'housemaid','management', 'retired', 'self-employed', 'services', 'student', 'technician', 'unemployed'))
 
 st.write('Nasabah bekerja sebagai', job)
@@ -64,10 +65,10 @@ st.write('---')
 
 
 marital = st.selectbox(
-    'Status nasabah adalah',
+    'Status nasabah',
     ('divorced', 'married', 'single'))
 
-st.write('Status nasabah adalah', marital)
+st.write('Nasabah berstatus', marital)
 st.write('---')
 
 
@@ -107,7 +108,7 @@ contact_prev_campaign = st.selectbox(
     'Apakah nasabah pernah dikontak campaign terdahulu?',
     ('contacted', 'not contacted'))
 
-st.write('Hasil campaign terdahulu adalah', contact_prev_campaign)
+st.write('Nasabah', contact_prev_campaign)
 st.write('---')
 
 
@@ -139,7 +140,7 @@ st.dataframe(data=rekap)
 st.title('C. Prediksi')
 if st.button('Prediksi nasabah'):
 
-    if campaign < 0 or campaign < 0 or previous < 0:
+    if age < 0 or campaign < 0 or previous < 0:
         st.write('Nilai fitur tidak bisa negatif')
     else:
         hasil = st.session_state['model'].predict(rekap)
